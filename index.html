@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>UPI Payment</title>
+
+  <style>
+
+    body{
+      margin:0;
+      padding:0;
+      font-family:Arial, sans-serif;
+      background:black;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      height:100vh;
+    }
+
+    .box{
+      background:#111;
+      padding:30px;
+      width:350px;
+      border-radius:18px;
+      border:2px solid gold;
+      box-shadow:0 0 20px rgba(255,215,0,0.4);
+      text-align:center;
+    }
+
+    h2{
+      margin-bottom:20px;
+      color:gold;
+      font-size:28px;
+    }
+
+    .amount-buttons{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:10px;
+      margin-bottom:20px;
+    }
+
+    .amount-btn{
+      padding:12px;
+      border:none;
+      border-radius:10px;
+      background:gold;
+      color:black;
+      font-size:16px;
+      font-weight:bold;
+      cursor:pointer;
+      transition:0.3s;
+    }
+
+    .amount-btn:hover{
+      background:#ffd700;
+      transform:scale(1.03);
+    }
+
+    input{
+      width:100%;
+      padding:14px;
+      font-size:16px;
+      border:1px solid gold;
+      border-radius:10px;
+      margin-bottom:20px;
+      box-sizing:border-box;
+      background:#222;
+      color:white;
+    }
+
+    input::placeholder{
+      color:#bbb;
+    }
+
+    .pay-btn{
+      width:100%;
+      padding:14px;
+      background:gold;
+      color:black;
+      border:none;
+      border-radius:10px;
+      font-size:18px;
+      font-weight:bold;
+      cursor:pointer;
+      transition:0.3s;
+    }
+
+    .pay-btn:hover{
+      background:#ffd700;
+      transform:scale(1.02);
+    }
+
+  </style>
+</head>
+<body>
+
+  <div class="box">
+
+    <h2>Make Payment</h2>
+
+    <div class="amount-buttons">
+      <button class="amount-btn" onclick="setAmount(500)">₹500</button>
+      <button class="amount-btn" onclick="setAmount(1000)">₹1000</button>
+      <button class="amount-btn" onclick="setAmount(5000)">₹5000</button>
+      <button class="amount-btn" onclick="setAmount(10000)">₹10000</button>
+      <button class="amount-btn" onclick="setAmount(20000)">₹20000</button>
+    </div>
+
+    <input
+      type="number"
+      id="amount"
+      placeholder="Enter Amount"
+      value=""
+      min="1"
+    >
+
+    <button class="pay-btn" onclick="payNow()">
+      Pay Now
+    </button>
+
+  </div>
+
+  <script>
+
+    function setAmount(value){
+      document.getElementById("amount").value = value;
+    }
+
+    function payNow(){
+
+      let amount = document.getElementById("amount").value;
+
+      if(amount === "" || amount <= 0){
+        alert("Please enter amount");
+        return;
+      }
+
+      let paymentUrl =
+        "https://www.upiintentsoft.com/paylink?link=271&amt=" + amount;
+
+      window.location.href = paymentUrl;
+    }
+
+  </script>
+
+</body>
+</html>
